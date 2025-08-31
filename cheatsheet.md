@@ -59,3 +59,75 @@ Given a binary array `nums`, return the maximum length of a contiguous subarray 
 4. Check when a transformed prefix sum reappears.  
 </details>
 
+# Array pattern
+<details>
+<summary>Move Zeroes</summary>
+
+**Problem:**  
+Given an integer array `nums`, move all `0`s to the end of it while maintaining the relative order of the non-zero elements.  
+Do this **in-place** without making a copy of the array.  
+
+**Trick:**  
+- Use a **two-pointer technique**: one pointer (`j`) marks where the next non-zero should go.  
+- Traverse the array: whenever you find a non-zero, place it at `nums[j]` and increment `j`.  
+- After traversal, fill the remaining elements with `0`s.  
+- Alternate trick: swap directly in-place whenever you find a non-zero.
+
+</details>
+
+<details>
+<summary>Majority Element</summary>
+
+**Problem:**  
+Given an array `nums` of size `n`, return the **majority element**, which appears more than ⌊n/2⌋ times.  
+It is guaranteed that a majority element always exists.  
+
+**Trick:**  
+- **Boyer–Moore Voting Algorithm** is the optimal approach.  
+- Keep a `candidate` and a `count`.  
+- If `count == 0`, pick the current number as candidate.  
+- Increment `count` if the number matches candidate, otherwise decrement it.  
+- At the end, the candidate will be the majority element.  
+- Alternatives: counting with HashMap, or sorting and returning the middle element.
+
+</details>
+
+<details>
+<summary>Rotate Array</summary>
+
+**Problem:**  
+Given an integer array `nums`, rotate the array to the right by `k` steps, where `k` is non-negative.  
+
+**Trick:**  
+- Rotating right by `k` is the same as moving the last `k` elements to the front.  
+- Handle `k > n` by taking `k % n`.  
+- Three common approaches:
+  1. **Reverse Method (Optimal O(n), O(1))**:  
+     - Reverse entire array.  
+     - Reverse first `k` elements.  
+     - Reverse last `n-k` elements.  
+  2. **Extra Array (O(n), O(n))**: Store rotated result in a new list and copy back.  
+  3. **One-by-One Rotation (O(n·k), O(1))**: Not efficient.  
+
+</details>
+
+<details>
+<summary>Best Time to Buy and Sell Stock II</summary>
+
+**Problem:**  
+You are given an integer array `prices` where `prices[i]` is the price of a given stock on the `i`th day.  
+
+- On each day, you may decide to **buy** and/or **sell** the stock.  
+- You can hold **at most one share** of the stock at any time.  
+- However, you can **buy and sell on the same day**.  
+
+Return the **maximum profit** you can achieve.  
+
+**Trick:**  
+- This is the **“infinite transactions allowed”** version.  
+- You don’t need to find local minima/maxima explicitly.  
+- Simply **sum up all upward slopes**:  
+  - For every consecutive pair of days, if `prices[i] > prices[i-1]`, add the difference to profit.  
+- This greedy approach works because small profitable trades combine into the global maximum.  
+
+</details>
